@@ -1,0 +1,250 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<style>
+		
+		</style>
+	
+		<title>NoHandsUp</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial scale=1">
+	<meta name="description" content="NoHandsUp Attendance Monitor">
+	<meta name="keywords" content="NoHandsUp, attendance, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="{% static 'imgh/favicon.ico' %}" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'cssh/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--link rel="stylesheet" href="{% static 'cssh/font-awesome.min.css' %}"/-->
+	<!--link rel="stylesheet" href="{% static 'cssh/owl.carousel.css' %}"/-->
+	<link rel="stylesheet" href="{% static 'cssh/style.css' %}"/>
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+		
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="{% static 'imgh/logo.png' %}" alt="">
+					</div>
+				</div>
+				
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					
+				</div>
+				<div class="col-lg-9 col-md-9">
+					{%if user.is_authenticated %}
+					<a href="{% url 'record' %}" class="site-btn header-btn">View Register</a>
+					{%endif%}
+					<nav class="main-menu">
+						<ul>
+							<li class="nav-item active"></li>
+							<li><a href="{% url 'project_index' %}">Home</a></li>
+							<li><a href="{% url 'aboutus' %}">About Us</a></li>
+							
+							<li><a href="{% url 'contact' %}">Contact Us</a></li>
+							{%if group == 'Teacher' %}
+							<li><a href="{% url 'send_response' %}">Go To Class</a></li>
+							<li><a href="{% url 'logout' %}">Logout</a></li>
+							{%elif group == 'Student' %}
+							<li><a href="{% url 'send_response2' %}">Attend Class</a></li>
+							<li><a href="{% url 'logout' %}">Logout</a></li>
+							{% else %}
+							<li><a href="{% url 'login' %}">Login</a></li>
+							<!--li><a href="{% url 'logout' %}">Logout</a></li-->
+							<!-- li style="color: white;"> Welcome {{user.username}}</li -->
+							<!--li><a href="{% url 'register' %}">Sign Up</a></li-->
+							<!--li><a href="{% url 'login' %}">Login</a></li-->
+							{%endif%}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Hero section -->
+	<section class="hero-section set-bg" data-setbg="{% static 'imgh/bg.jpg' %}">
+		<div class="container">
+			<div class="hero-text text-white">
+				{%if user.is_authenticated %}
+				<h2>Welcome {{user.username}} !!!</h2>
+				<p>Smart Attendance Monitor</p>
+				{%else%}
+				<h2>Locate → Scan → Attend</h2>
+				<p>Smart Attendance Monitor</p>
+				{%endif%}
+
+			</div>
+			
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+
+	<!-- categories section -->
+	<section class="categories-section spad">
+		<div class="container">
+			<div class="section-title">
+				<h2 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Features In Use</h2>
+				<p> </p>
+			</div>
+			<div class="row">
+				<!-- categorie -->
+				<div class="col-lg-4 col-md-6">
+					<div class="categorie-item">
+						<div class="ci-thumb set-bg" data-setbg="{% static 'imgh/categories/2.jpg' %}"></div>
+						<div class="ci-text">
+							<h5>GMaps</h5>
+							<p></p>
+							<span><br>Google has Spotted you...</span>
+						</div>
+					</div>
+				</div>
+				<!-- categorie -->
+				<div class="col-lg-4 col-md-6">
+					<div class="categorie-item">
+						<div class="ci-thumb set-bg" data-setbg="{% static 'imgh/categories/1.jpg' %}"></div>
+						<div class="ci-text">
+							<h5>Face Recognition</h5>
+							<p></p>
+							<span><br>You are Identified...</span>
+						</div>
+					</div>
+				</div>
+				
+				<!-- categorie -->
+				<div class="col-lg-4 col-md-6">
+					<div class="categorie-item">
+						<div class="ci-thumb set-bg" data-setbg="{% static 'imgh/categories/3.jpg' %}"></div>
+						<div class="ci-text">
+							<h5>Attendance Record</h5>
+							<p></p>
+							<span>Now Check your attendance 24X7...</span>
+						</div>
+					</div>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</section>
+	<!-- categories section end -->
+	<div>
+		{%if messages%}
+			{% for message in messages %}
+               {%if message.tags%}<script> alert("{{ message }}") </script>{%endif%}
+			{% endfor %}
+		{%endif%}
+        </div>
+	
+<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'jsh/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'jsh/bootstrap.min.js' %}"></script>
+	<script src="{% static 'jsh/mixitup.min.js' %}"></script>
+	<script src="{% static 'jsh/circle-progress.min.js' %}"></script>
+	<script src="{% static 'jsh/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'jsh/main.js' %}"></script>
+	
+<!-- footer section -->
+<footer class="footer-section spad pb-0">
+	<div class="footer-top">
+		<div class="footer-warp">
+			<div class="row">
+				
+				<div class="widget-item">
+					<h4>Institute Desk</h4>
+					<ul>
+						<li><a href="https://www.iitbhu.ac.in/dept/cse">Computer Science and Engineering </a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/ece">Electronics Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/eee">Electrical Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/mec">Mechanical Engineering</a></li>
+						
+					
+						
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>    </h4>
+					<ul>
+						<li><a href=""><br></a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/civ">Civil Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/che">Chemical Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/met">Metallurgy Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/min">Mining Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/cer">Ceramic Engeneering</a></li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>    </h4>
+					<ul>
+						<li><a href=""><br></a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/phe">Pharmaceutical Engineering and Technology</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/bce">Biochemical Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/bme">Biomedical Engineering</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/mst">Material Science and Technology</a></li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>    </h4>
+					<ul>
+						<li><a href=""><br></a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/apd">Architecture,Planning and Design</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/mat">Mathematical Sciences</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/apc">Chemistry</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/app">Physics</a></li>
+						<li><a href="https://www.iitbhu.ac.in/dept/hss">Humanistic Studies</a></li>
+	
+						
+					</ul>
+				</div>
+				
+				
+				
+			</div>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		<div class="footer-warp">
+			<ul class="footer-menu">
+				<li><a href="http://iitbhu.ac.in">Indian Institute of Technology (BHU) Varanasi</a></li>
+				
+			</ul>
+			
+	</div>
+
+		  
+	
+</footer> 
+<!-- footer section end -->
+</body>
+
+</html>
+
+
